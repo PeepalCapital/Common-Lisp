@@ -263,3 +263,8 @@
 	(b6 color purple)
 	(b6 size large)))
 
+(defun match-element (sym1 sym2)
+  (cond ((equal sym1 sym2) t)
+	((equal sym2 ?) t)
+	(t nil)))
+
