@@ -268,3 +268,40 @@
 	((equal sym2 '?) t)
 	(t nil)))
 
+(defun match-triple (list1 list2)
+  (every #'match-element list1 list2))
+
+(defun fetch (pattern)
+  (remove-if-not #'(lambda (y) (match-triple y pattern)) databasepat))
+
+(defun what-color (blockname)
+  (list blockname 'color '?))
+
+(defun supporters (blockname)
+  (mapcar #'third (fetch (list blockname 'supported-by '?))))
+
+(defun supp-cube (blockname)
+  (member 'cube
+	  (mapcar #'(lambda(y) (third (first (fetch (list y 'shape '?)))))
+		  (supporters blockname))))
+
+(defun desc1 (blockname)
+  (fetch (list blockname '? '?)))
+
+(defun desc2 (blockname)
+  (mapcar #'cdr (desc1 blockname)))
+
+(defun description (blockname)
+ (reduce #'append (desc2 blockname)))
+
+(setf words
+      '((one un)
+	(two deux)
+	(three trois)
+	(four quatre)
+	(five cinq)))
+
+(mapcar #'(lambda (x y) (append x (list y))) words '(uno dos tres quatro cinco))
+
+
+
