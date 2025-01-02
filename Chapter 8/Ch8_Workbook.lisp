@@ -56,3 +56,24 @@
   (cond ((null x) nil)
 	((equal mem (first (first x))) (first x))
 	(t (rec-assoc mem (rest x)))))
+
+(defun rec-nth (n x)
+  (cond ((zerop n) (first x))
+	(t (rec-nth (- n 1) (rest x)))))
+
+(defun add1 (n)
+  (+ n 1))
+
+(defun sub1 (n)
+  (- n 1))
+
+(defun rec-plus (x y)
+  (cond ((zerop y) x)
+	(t (rec-plus (add1 x) (sub1 y)))))
+
+;; C-c C-c (Interrupt the Evaluation)
+;; C-c C-b (Abort All Background Operations)
+
+;; I should write fizzbuzz using recursion after chapter 9 which will teach me how to print in Common Lisp
+
+
