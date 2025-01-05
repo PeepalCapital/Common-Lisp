@@ -76,4 +76,15 @@
 
 ;; I should write fizzbuzz using recursion after chapter 9 which will teach me how to print in Common Lisp
 
+(defun fib (n)
+  (cond ((equal n 0) 1)
+	((equal n 1) 1)
+	(t (+ (fib (- n 1))
+	      (fib (- n 2))))))
+
+;; no base case of NIL such as (null (first x) nil)
+(defun any-7-p (x)
+  (cond ((equal (first x) 7) t)
+	(t (any-7-p (rest x)))))
+
 
