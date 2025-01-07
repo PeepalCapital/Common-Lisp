@@ -87,4 +87,7 @@
   (cond ((equal (first x) 7) t)
 	(t (any-7-p (rest x)))))
 
-
+(defun find-first-odd (x)
+  (cond ((null x) nil)
+	((oddp (first x)) (first x))
+	(t (find-first-odd (rest x)))))
