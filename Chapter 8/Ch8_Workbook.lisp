@@ -91,3 +91,7 @@
   (cond ((null x) nil)
 	((oddp (first x)) (first x))
 	(t (find-first-odd (rest x)))))
+
+(defun last-element (x)
+  (cond ((atom (cdr x)) (car x))
+	(t (last-element (cdr x)))))
