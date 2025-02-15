@@ -95,3 +95,46 @@
 (defun last-element (x)
   (cond ((atom (cdr x)) (car x))
 	(t (last-element (cdr x)))))
+
+(defun add-nums (n)
+  (cond ((zerop n) 0)
+	(t (+ n (add-nums (- n 1))))))
+
+(defun all-equal (x)
+  (cond ((null (rest x)) t)
+	 ((not (equal (first x) (second x))) nil)
+	 (t (all-equal (rest x)))))
+
+(defun count-down (n)
+  (cond ((zerop n) nil)
+	(t (cons n (count-down (- n 1))))))
+
+(defun fact-countdown (n)
+  (reduce #'* (count-down n)))
+
+(defun laugh (n)
+  (cond ((zerop n) nil)
+	(t (cons 'ha (laugh (- n 1))))))
+
+(defun count-down-zero (n)
+  (cond ((zerop (+ n 1)) nil)
+	(t (cons n (count-down-zero (- n 1))))))
+
+(defun square-list (x)
+  (cond((null x) nil)
+	(t (cons (* (first x) (first x)) (square-list (rest x))))))
+
+(defun my-nth (n x)
+  (cond ((zerop n) (first x))
+	(t (my-nth (- n 1) (rest x)))))
+
+(defun my-nth-stop (n x)
+  (cond ((null x) nil)
+	((zerop n) (first x))
+	(t (my-nth (- n 1) (rest x)))))
+
+(defun my-member (n x)
+  (cond ((null x) nil)
+	((equal n (first x)) x)
+	(t (my-member n (rest x)))))
+
