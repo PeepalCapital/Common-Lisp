@@ -138,3 +138,49 @@
 	((equal n (first x)) x)
 	(t (my-member n (rest x)))))
 
+;; flatten a list
+;; example (a (b (c d) e)))
+
+(defun flatten (x)
+  (cond ((null x) nil)
+        ((atom x) (list x))
+        (t (append (flatten (car x)) (flatten (cdr x))))))
+
+(defun my-assoc (key table)
+  (cond ((null table) nil)
+	((equal key (first (first table))) (first table))
+	(t (my-assoc key (rest table)))))
+
+(defun compare-lengths (x y)
+  (cond ((and (null x) (null y) 'same-length))
+	((null x) 'second-is-longer)
+	((null y) 'first-is-longer)
+	(t (compare-lengths (rest x) (rest y)))))
+
+(defun sum-numeric-elements (x)
+  (cond ((null x) 0)
+	((numberp (first x))
+	 (+ (first x) (sum-numeric-elements (rest x))))
+	(t (sum-numeric-elements (rest x)))))
+
+(defun my-remove (n x)
+  (cond ((null x) nil)
+	((equal n (first x))
+	 (my-remove n (rest x)))
+	(t (cons (first x) (my-remove n (rest x))))))
+
+(defun my-intersection (a b)
+  (cond ((null a) nil)
+	((member (first a) b)
+	 (cons (first a) (my-intersection (rest a) b)))
+	(t (my-intersection (rest a) b))))
+
+(defun my-set-difference (a b)
+  (cond ((null a) nil)
+	((not (member (first a) b))
+	 (cons (first a) (my-set-difference (rest a) b)))
+	(t (my-set-difference (rest a) b))))
+
+
+
+
