@@ -181,6 +181,16 @@
 	 (cons (first a) (my-set-difference (rest a) b)))
 	(t (my-set-difference (rest a) b))))
 
+(defun my-nth (n x)
+  (cond ((zerop n) (first x))
+	(t (my-nth (- n 1) (rest x)))))
+
+(defun count-odd (x)
+  (cond ((null x) 0)
+	((oddp (first x))
+	      (+ 1 (count-odd (rest x))))
+	(t (count-odd (rest x)))))
+
 
 
 
