@@ -13,3 +13,14 @@
 
 (defmacro set-nil (var)
   (list 'setq var nil))
+
+(defmacro simple-rotatef (a b)
+  `(let ((tempa ,b)
+	 (tempb ,a))
+    (setf ,a tempa)
+     (setf ,b tempb)))
+
+(let ((a 2)
+      (b 7))
+  (simple-rotatef a b)
+  (list a b))
